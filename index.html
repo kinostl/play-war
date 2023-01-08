@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic">
+    <style>
+        main {
+            margin-left: 20vw;
+            margin-right: 20vw;
+        }
+
+        .win {
+            background-color: red;
+        }
+
+        .draw {
+            background-color: blue;
+        }
+
+        .win_turn {
+            background-color: green;
+        }
+
+        .versus {
+            background-color: grey;
+        }
+    </style>
+    <title>Let's Play War!</title>
+</head>
+
+<body>
+    <main>
+        <ul id="gameReports">
+
+        </ul>
+    </main>
+
+    <script type="module">
+        import playWar from './index.mjs'
+        const gameReports = document.getElementById('gameReports')
+        function updateReports(report, className) {
+            if (className === 'split') {
+                const reportHr = document.createElement('hr')
+                gameReports.appendChild(reportHr)
+            } else {
+                const reportLi = document.createElement('li')
+                const reportText = document.createTextNode(report)
+                reportLi.appendChild(reportText)
+                reportLi.classList = ['card', className].join(' ')
+                gameReports.appendChild(reportLi)
+            }
+        }
+        playWar(updateReports)
+    </script>
+</body>
+
+</html>
